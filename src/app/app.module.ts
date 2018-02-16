@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NewStockComponent } from './new-stock/new-stock.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { StocksService } from './stocks.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { StocksService } from './stocks.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [StocksService],
   bootstrap: [AppComponent]
