@@ -1,10 +1,11 @@
-import { Injectable, Query } from '@angular/core';
+import { Injectable, Query, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class StocksService {
 
-  public stockNames: string[] = ['dax'];
+  stockNames: string[] = ['dax'];
+  refreshStocksEvent = new EventEmitter();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,6 +16,11 @@ export class StocksService {
   getCurrentStockQuotas() {
     return this.httpClient.get<StockQuota[]>('https://stockplaceholder.herokuapp.com/api/stocks/' + this.stockNames.join('/'));
   }
+
+  refreshStocks() {
+    this.refreshStocksEvent.emit();
+  }
+
 }
 
 export interface StockQuota {

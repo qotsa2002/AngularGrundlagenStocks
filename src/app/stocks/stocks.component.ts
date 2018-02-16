@@ -14,7 +14,12 @@ export class StocksComponent implements OnInit {
   constructor(private stocksService: StocksService) { }
 
   ngOnInit() {
-    this.stocksService.getCurrentStockQuotas().subscribe((stocksQuota) => { this.stocks = stocksQuota; });
+    this.getCurrentStockQuotas();
+    this.stocksService.refreshStocksEvent.subscribe(() => { this.getCurrentStockQuotas(); });
   }
+
+getCurrentStockQuotas() {
+  this.stocksService.getCurrentStockQuotas().subscribe((stocksQuota) => { this.stocks = stocksQuota; });
+}
 
 }
