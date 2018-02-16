@@ -3,11 +3,11 @@
   <div *ngFor="let stock of stocks;" id="cardTemplate"  class="col s12 m6">
       <div class="card hoverable blue darken-1">
           <div class="card-content white-text">
-              <span class="card-title" style="margin-bottom: 0px;">{{stock.symbol}}</span>
-              <div id="DateTime">{{stock.lastTradeTime}}</div>
+              <span class="card-title" style="margin-bottom: 0px;">{{stock.name}} ({{stock.symbol}})</span>
+              <div id="DateTime">{{stock.lastTradeDate}} - {{stock.lastTradeTime}}</div>
 
-              <div id="LastTradePrice" class="col s6" style="padding-left: 0;font-size: 22px;">{{stock.lastTradePriceOnly}}</div>
-              <div id="Change" class="col offset-s2 s2" [ngClass]="{changeExtremNegative: stock.change <-5, changeNegative: stock.change < 0, changePositive: stock.change > 0 }">{{stock.change}}</div>
+              <div id="LastTradePrice" class="col s6" style="padding-left: 0;font-size: 22px;">{{stock.lastTradePriceOnly}} {{stock.currency}}</div>
+              <div id="Change" class="col offset-s2 s2" [ngClass]="{ changeExtremNegative: stock.change <-5, changeNegative: stock.change < 0, changePositive: stock.change > 0 }">{{stock.change}}</div>
               <div id="ChangeinPercent" class="col s2">{{stock.changeinPercent}}</div>
           </div>
           <div class="card-action">
