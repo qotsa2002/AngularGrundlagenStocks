@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-stock',
@@ -10,7 +11,7 @@ export class NewStockComponent implements OnInit {
 
   newStockName = '';
 
-  constructor(private stocksService: StocksService) { }
+  constructor(private stocksService: StocksService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +23,7 @@ export class NewStockComponent implements OnInit {
 
     this.stocksService.addNewStock(this.newStockName);
 
-    this.newStockName = '';
+    this.router.navigate(['']);
   }
 
 }
