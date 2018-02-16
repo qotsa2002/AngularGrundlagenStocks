@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NewStockComponent } from './new-stock/new-stock.component';
 import { StocksComponent } from './stocks/stocks.component';
+import { StocksService } from './stocks.service';
 
 
 @NgModule({
@@ -16,9 +18,10 @@ import { StocksComponent } from './stocks/stocks.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [StocksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

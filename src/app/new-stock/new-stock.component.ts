@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StocksService } from '../stocks.service';
 
 @Component({
   selector: 'app-new-stock',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewStockComponent implements OnInit {
 
-  constructor() { }
+  newStockName = '';
+
+  constructor(private stocksService: StocksService) { }
 
   ngOnInit() {
+  }
+
+  addNewStock() {
+    if (this.newStockName === '') {
+      return;
+    }
+
+    this.stocksService.addNewStock(this.newStockName);
+
+    this.newStockName = '';
   }
 
 }
