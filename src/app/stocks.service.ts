@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class StocksService {
 
-  public stockNames: string[] = new Array();
+  public stockNames: string[] = ['dax'];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -13,11 +13,11 @@ export class StocksService {
   }
 
   getCurrentStockQuotas() {
-    return this.httpClient.get<StockRootObject>('https://stockplaceholder.herokuapp.com/api/stocks');
+    return this.httpClient.get<StockQuota[]>('https://stockplaceholder.herokuapp.com/api/stocks/' + this.stockNames.join('/'));
   }
 }
 
-export interface Quote {
+export interface StockQuota {
   symbol: string;
   name: string;
   change: string;
@@ -26,19 +26,4 @@ export interface Quote {
   lastTradePriceOnly: string;
   changeinPercent: string;
   lastTradeTime: string;
-}
-
-export interface Result {
-  quote: Quote[];
-}
-
-export interface Query {
-  count: number;
-  created: string;
-  lang: string;
-  results: Result;
-}
-
-export interface StockRootObject {
-  query: Query;
 }
